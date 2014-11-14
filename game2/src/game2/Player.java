@@ -68,4 +68,8 @@ public class Player {
         return new Player(this.posn, this.b_width, this.b_height,
             this.movementSpeed + randUp, this.attackStat + randUp, this.money);
     }
+    
+    public WorldImage drawImage() {
+        return new RectangleImage(this.posn, this.width, this.height, this.color);
+    }
 }
