@@ -17,5 +17,14 @@ public class Mobs {
     movement behavior of each mob is same so just need this one class
     have hit checker in mobs class
     */
+    
+    public Mobs move() {
+        // randomly moving by itself
+    }
+    
+    public Mobs react() {
+        // calls helper functions and moves in reaction to them
+        //*** possible to combine react into move? using ifs
+    }
 
 }
