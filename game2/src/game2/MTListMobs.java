@@ -10,6 +10,13 @@ import javalib.colors.*;
 import javalib.worldcanvas.*;
 import javalib.worldimages.*;
 
-public class MTListMobs {
+public class MTListMobs implements ListMobs {
+    
+    public MTListMobs() {
+    }
+    
+    public WorldImage drawListMobs() {
+        return new RectangleImage(new Posn(0, 0), 0, 0, new Black());
+    }
 
 }

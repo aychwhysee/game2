@@ -12,6 +12,8 @@ import javalib.worldimages.*;
 
 public interface ListMobs {
     
-    public WorldImage drawListBlocks();
+    public WorldImage drawListMobs();
+    
+    
 
 }
