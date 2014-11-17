@@ -84,6 +84,10 @@ public class Mob {
         // check bottom y posn
     }
     
+    public boolean isDeadHuh() {
+        // check Mob health. if < 0, return true; else false.
+    }
+    
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);
     }

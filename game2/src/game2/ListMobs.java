@@ -18,6 +18,8 @@ public interface ListMobs {
     
     public ListMobs react(Player player);
     
+    public ListMobs remove();
+    
     
 
 }

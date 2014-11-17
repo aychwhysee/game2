@@ -26,5 +26,9 @@ public class MTListMobs implements ListMobs {
     public ListMobs react(Player player) {
         return new MTListMobs();
     }
+    
+    public ListMobs remove() {
+        return new MTListMobs();
+    }
 
 }
