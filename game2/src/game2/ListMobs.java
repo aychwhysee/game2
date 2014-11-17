@@ -14,6 +14,8 @@ public interface ListMobs {
     
     public WorldImage drawListMobs();
     
+    public ListMobs move();
+    
     
 
 }

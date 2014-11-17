@@ -18,5 +18,9 @@ public class MTListMobs implements ListMobs {
     public WorldImage drawListMobs() {
         return new RectangleImage(new Posn(0, 0), 0, 0, new Black());
     }
+    
+    public ListMobs move() {
+        return new MTListMobs();
+    }
 
 }

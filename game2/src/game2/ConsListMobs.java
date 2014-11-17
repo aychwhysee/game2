@@ -19,5 +19,13 @@ public class ConsListMobs implements ListMobs {
         this.first = first;
         this.rest = rest;
     }
+    
+    public WorldImage drawListMobs() {
+        return new OverlayImages(first.drawImage(), rest.drawListMobs());
+    }
+    
+    public ListMobs move() {
+        return new ConsListMobs(first.move(), rest.move());
+    }
 
 }
