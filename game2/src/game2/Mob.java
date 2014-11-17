@@ -19,7 +19,7 @@ public class Mob {
     */
     public Posn posn; // each mob has a posn
     
-    public int speed; // mob speed (should all be the same)
+    public int speed = 10; // mob speed (should all be the same)
     public int b_width; //board width
     public int b_height; //board height
     
@@ -29,6 +29,30 @@ public class Mob {
     public int health; // mob HP
     
     public IColor color = new Red(); // But I need a dif col for each mob
+    
+    public Random random = new Random();
+    
+    public Mob(int b_width, int b_height, int health) {
+        this.b_width = b_width;
+        this.b_height = b_height;
+        this.health = health;
+        this.posn = new Posn(randomX(b_width), randomY(b_height));
+    }
+    
+    public Mob(Posn posn, int b_width, int b_height, int health) {
+        this.posn = posn;
+        this.b_width = b_width;
+        this.b_height = b_height;
+        this.health = health;
+    }
+    
+    public int randomX(int b_width) {
+        return random.nextInt(b_width - (width * 2)) + width;
+    }
+    
+    public int randomY(int b_height) {
+        return random.nextInt(b_height - (height * 2)) + height;
+    }
     
     public Mob move() {
         // randomly moving by itself
