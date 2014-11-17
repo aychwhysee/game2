@@ -26,15 +26,18 @@ public class Mob {
     public final int width = 30; //mob width
     public final int height = 30; // mob height
     
+    public int health; // mob HP
+    
     public IColor color = new Red(); // But I need a dif col for each mob
     
     public Mob move() {
         // randomly moving by itself
     }
     
-    public Mob react() {
+    public Mob react(Player player) {
         // calls helper functions and moves in reaction to them
         //*** possible to combine react into move? using ifs?
+        // Decrease mob HP by player ATT
         // if hitOnLeft move right
         // if hitOnRight move left
         // if hitOnTop move down

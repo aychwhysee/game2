@@ -16,6 +16,8 @@ public interface ListMobs {
     
     public ListMobs move();
     
+    public ListMobs react(Player player);
+    
     
 
 }

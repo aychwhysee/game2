@@ -27,5 +27,9 @@ public class ConsListMobs implements ListMobs {
     public ListMobs move() {
         return new ConsListMobs(first.move(), rest.move());
     }
+    
+    public ListMobs react(Player player) {
+        return new ConsListMobs(first.react(player), rest.react(player));
+    }
 
 }

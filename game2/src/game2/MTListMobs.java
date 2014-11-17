@@ -22,5 +22,9 @@ public class MTListMobs implements ListMobs {
     public ListMobs move() {
         return new MTListMobs();
     }
+    
+    public ListMobs react(Player player) {
+        return new MTListMobs();
+    }
 
 }
