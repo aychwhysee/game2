@@ -70,6 +70,9 @@ public class Mob {
     
     public boolean hitOnLeft(Player player) {
         // check left x posn
+        return ((player.posn.x + player.width/2 >= this.posn.x - this.width/2)
+                && (player.posn.y - player.height/2 <= this.posn.y + this.height/2)
+                && (player.posn.y + player.height/2 >= this.posn.y - this.height/2));
     }
     
     public boolean hitOnRight(Player player) {
