@@ -86,6 +86,15 @@ public class Mob {
     
     public boolean isDeadHuh() {
         // check Mob health. if < 0, return true; else false.
+        if (this.health <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public ListMobs removeDead(ListMobs lm) {
+           return lm.remove(this); //???
     }
     
     public WorldImage drawImage() {

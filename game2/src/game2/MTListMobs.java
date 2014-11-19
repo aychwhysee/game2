@@ -27,7 +27,7 @@ public class MTListMobs implements ListMobs {
         return new MTListMobs();
     }
     
-    public ListMobs remove() {
+    public ListMobs remove(Mob mob) {
         return new MTListMobs();
     }
 

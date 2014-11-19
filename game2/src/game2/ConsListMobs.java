@@ -32,13 +32,16 @@ public class ConsListMobs implements ListMobs {
         return new ConsListMobs(first.react(player), rest.react(player));
     }
 
-    public ListMobs remove() {
-        if (first.isDeadHuh()) {
-            return new ConsListMobs(
-                    new Mob(new Posn(0, 0), 0, 0, 0),
-                    rest); ///???? not sure yet.
+    // wait a sec. logistics aside, how would this even work? we want to
+    // remove a mob when it dies. So with this setup, would I need to be
+    // calling remove every single tick?????????
+    public ListMobs remove(Mob mob) {
+        if (this.first == mob) {
+            return this.rest; ///???? not sure yet.
+            // ok but what if we're only removing the third elt? if we just
+            // return rest, what'll happen to the first and second elts?
         } else {
-            return rest.remove();
+            return new ConsListMobs(this.first, rest.remove(mob));
         }
     }
 }
