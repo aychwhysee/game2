@@ -56,6 +56,16 @@ public class Mob {
     }
 
     public Mob move() {
+        int min = 1;
+        int max = 4;
+        int randomDir = random.nextInt((max - min) + 1) + min;
+        // 1 = left, 2 = right, 3 = up, 4 = down
+        // have it move in one direction at least 3 times before doing another
+        // random direction. forloop? maybe not.....do something twice, then
+        // return just one instance of the next frame?...
+        if (randomDir == 1) {
+            return new Mob()
+        }
         // randomly moving by itself
     }
 
