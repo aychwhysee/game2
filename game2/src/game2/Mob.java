@@ -12,52 +12,53 @@ import javalib.worldimages.*;
 
 public class Mob {
     /*
-    list of mobs interface
-    each element in list is a mob with diff attributes (HP, posn)
-    movement behavior of each mob is same so just need this one class
-    have hit checker in mobs class
-    */
+     list of mobs interface
+     each element in list is a mob with diff attributes (HP, posn)
+     movement behavior of each mob is same so just need this one class
+     have hit checker in mobs class
+     */
+
     public Posn posn; // each mob has a posn
-    
+
     public int speed = 10; // mob speed (should all be the same)
     public int b_width; //board width
     public int b_height; //board height
-    
+
     public final int width = 30; //mob width
     public final int height = 30; // mob height
-    
+
     public int health; // mob HP
-    
+
     public IColor color = new Red(); // But I need a dif col for each mob
-    
+
     public Random random = new Random();
-    
+
     public Mob(int b_width, int b_height, int health) {
         this.b_width = b_width;
         this.b_height = b_height;
         this.health = health;
         this.posn = new Posn(randomX(b_width), randomY(b_height));
     }
-    
+
     public Mob(Posn posn, int b_width, int b_height, int health) {
         this.posn = posn;
         this.b_width = b_width;
         this.b_height = b_height;
         this.health = health;
     }
-    
+
     public int randomX(int b_width) {
         return random.nextInt(b_width - (width * 2)) + width;
     }
-    
+
     public int randomY(int b_height) {
         return random.nextInt(b_height - (height * 2)) + height;
     }
-    
+
     public Mob move() {
         // randomly moving by itself
     }
-    
+
     public Mob react(Player player) {
         // calls helper functions and moves in reaction to them
         //*** possible to combine react into move? using ifs?
@@ -67,29 +68,35 @@ public class Mob {
         // if hitOnTop move down
         // if hitOnBot move up
     }
-    
+
     public boolean hitOnLeft(Player player) {
         // check left x posn
-        return ((player.posn.x + player.width/2 >= this.posn.x - this.width/2)
-                && (player.posn.y - player.height/2 <= this.posn.y + this.height/2)
-                && (player.posn.y + player.height/2 >= this.posn.y - this.height/2));
+        return ((player.posn.x + player.width / 2 >= this.posn.x - this.width / 2)
+                && (player.posn.y - player.height / 2 <= this.posn.y + this.height / 2)
+                && (player.posn.y + player.height / 2 >= this.posn.y - this.height / 2));
     }
-    
+
     public boolean hitOnRight(Player player) {
         // check right x posn
-        return ((player.posn.x - player.width/2 <= this.posn.x + this.width/2)
-                && (player.posn.y - player.height/2 <= this.posn.y + this.height/2)
-                && (player.posn.y + player.height/2 >= this.posn.y - this.height/2));
+        return ((player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
+                && (player.posn.y - player.height / 2 <= this.posn.y + this.height / 2)
+                && (player.posn.y + player.height / 2 >= this.posn.y - this.height / 2));
     }
-    
+
     public boolean hitOnTop(Player player) {
         // check top y posn
+        return ((player.posn.y + player.height / 2 >= this.posn.y - this.height / 2)
+                && (player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
+                && (player.posn.x + player.width / 2 >= this.posn.x - this.width / 2));
     }
-    
+
     public boolean hitOnBot(Player player) {
         // check bottom y posn
+        return ((player.posn.y - player.height / 2 >= this.posn.y + this.height / 2)
+                && (player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
+                && (player.posn.x + player.width / 2 >= this.posn.x - this.width / 2));
     }
-    
+
     public boolean isDeadHuh() {
         // check Mob health. if < 0, return true; else false.
         if (this.health <= 0) {
@@ -98,11 +105,11 @@ public class Mob {
             return false;
         }
     }
-    
+
     public ListMobs removeDead(ListMobs lm) {
-           return lm.remove(this); //???
+        return lm.remove(this); //???
     }
-    
+
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);
     }
