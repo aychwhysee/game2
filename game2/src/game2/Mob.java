@@ -96,6 +96,11 @@ public class Mob {
                 && (player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
                 && (player.posn.x + player.width / 2 >= this.posn.x - this.width / 2));
     }
+    
+    public boolean hitAtAll(Player player) {
+        return (this.hitOnLeft(player) || this.hitOnRight(player) 
+                || this.hitOnTop(player) || this.hitOnBot(player));
+    } // I have no idea what I'm doing
 
     public boolean isDeadHuh() {
         // check Mob health. if < 0, return true; else false.
