@@ -24,4 +24,9 @@ public class ShopItem {
         this.spd_boost = spd_boost;
     }
     
+    //hmm..initialize things to be new ShopItems? like
+    // ShopItem attboost1 = new ShopItem("Small Attack Boost", 15, 3, 0)
+    // ShopItem attboost2 = new ShopItem("Medium Attack Boost", 40, 8, 0) 
+    // etc etc???? :(
+    
 }
