@@ -10,7 +10,7 @@ import javalib.colors.*;
 import javalib.worldcanvas.*;
 import javalib.worldimages.*;
 
-public class Mob {
+public class AttackWMob {
     /*
      list of mobs interface
      each element in list is a mob with diff attributes (HP, posn)
@@ -33,14 +33,14 @@ public class Mob {
 
     public Random random = new Random();
 
-    public Mob(int b_width, int b_height, int health) {
+    public AttackWMob(int b_width, int b_height, int health) {
         this.b_width = b_width;
         this.b_height = b_height;
         this.health = health;
         this.posn = new Posn(randomX(b_width), randomY(b_height));
     }
 
-    public Mob(Posn posn, int b_width, int b_height, int health) {
+    public AttackWMob(Posn posn, int b_width, int b_height, int health) {
         this.posn = posn;
         this.b_width = b_width;
         this.b_height = b_height;
@@ -55,7 +55,7 @@ public class Mob {
         return random.nextInt(b_height - (height * 2)) + height;
     }
 
-    public Mob move() {
+    public AttackWMob move() {
         int min = 1;
         int max = 4;
         int randomDir = random.nextInt((max - min) + 1) + min;
@@ -64,12 +64,12 @@ public class Mob {
         // random direction. forloop? maybe not.....do something twice, then
         // return just one instance of the next frame?...
         if (randomDir == 1) {
-            return new Mob()
+            return new AttackWMob()
         }
         // randomly moving by itself
     }
 
-    public Mob react(Player player) {
+    public AttackWMob react(AttackWPlayer player) {
         // calls helper functions and moves in reaction to them
         //*** possible to combine react into move? using ifs?
         // Decrease mob HP by player ATT
@@ -83,7 +83,7 @@ public class Mob {
         if (this.hitOnLeft(player)) {
             this.health--;
             for (int i = 0; i < 5; i++) {
-                return new Mob(
+                return new AttackWMob(
                         new Posn(this.posn.x + this.speed, this.posn.y),
                         this.b_width,
                         this.b_height,
@@ -92,7 +92,7 @@ public class Mob {
         } else if (this.hitOnRight(player)) {
             this.health--;
             for (int i = 0; i < 5; i++) {
-                return new Mob(
+                return new AttackWMob(
                         new Posn(this.posn.x - this.speed, this.posn.y),
                         this.b_width,
                         this.b_height,
@@ -101,7 +101,7 @@ public class Mob {
         } else if (this.hitOnTop(player)) {
             this.health--;
             for (int i = 0; i < 5; i++) {
-                return new Mob(
+                return new AttackWMob(
                 new Posn(this.posn.x, this.posn.y + this.speed),
                 this.b_width,
                 this.b_height,
@@ -110,46 +110,45 @@ public class Mob {
         } else if (this.hitOnBot(player)) {
             this.health--;
             for (int i = 0; i < 5; i++) {
-                return new Mob(
+                return new AttackWMob(
                 new Posn(this.posn.x, this.posn.y - this.speed),
                 this.b_width,
                 this.b_height,
                 this.health);
             }
-        } else {
-            return this; //idk what i'm doing lol help
-        }
+        } else 
+            return this;
     }
 
-    public boolean hitOnLeft(Player player) {
+    public boolean hitOnLeft(AttackWPlayer player) {
         // check left x posn
         return ((player.posn.x + player.width / 2 >= this.posn.x - this.width / 2)
                 && (player.posn.y - player.height / 2 <= this.posn.y + this.height / 2)
                 && (player.posn.y + player.height / 2 >= this.posn.y - this.height / 2));
     }
 
-    public boolean hitOnRight(Player player) {
+    public boolean hitOnRight(AttackWPlayer player) {
         // check right x posn
         return ((player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
                 && (player.posn.y - player.height / 2 <= this.posn.y + this.height / 2)
                 && (player.posn.y + player.height / 2 >= this.posn.y - this.height / 2));
     }
 
-    public boolean hitOnTop(Player player) {
+    public boolean hitOnTop(AttackWPlayer player) {
         // check top y posn
         return ((player.posn.y + player.height / 2 >= this.posn.y - this.height / 2)
                 && (player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
                 && (player.posn.x + player.width / 2 >= this.posn.x - this.width / 2));
     }
 
-    public boolean hitOnBot(Player player) {
+    public boolean hitOnBot(AttackWPlayer player) {
         // check bottom y posn
         return ((player.posn.y - player.height / 2 >= this.posn.y + this.height / 2)
                 && (player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
                 && (player.posn.x + player.width / 2 >= this.posn.x - this.width / 2));
     }
 
-    public boolean hitAtAll(Player player) {
+    public boolean hitAtAll(AttackWPlayer player) {
         return (this.hitOnLeft(player) || this.hitOnRight(player)
                 || this.hitOnTop(player) || this.hitOnBot(player));
     } // I have no idea what I'm doing
@@ -163,9 +162,9 @@ public class Mob {
         }
     }
 
-    public ListMobs removeDead(ListMobs lm) {
-        return lm.remove(this); //???
-    }
+//    public ListMobs removeDead(ListMobs lm) {
+//        return lm.remove(this); //???
+//    }
 
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);

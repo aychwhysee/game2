@@ -10,7 +10,7 @@ import javalib.colors.*;
 import javalib.worldcanvas.*;
 import javalib.worldimages.*;
 
-public class Player {
+public class AttackWPlayer {
 
     public Posn posn;
 
@@ -28,7 +28,7 @@ public class Player {
     public IColor color = new Green();
        
 
-    public Player(Posn posn, int b_width, int b_height,
+    public AttackWPlayer(Posn posn, int b_width, int b_height,
             int movementSpeed, int attackStat, int money) {
         this.posn = posn;
         this.b_width = b_width;
@@ -38,21 +38,21 @@ public class Player {
         this.money = money;
     }
     
-    public Player move(String kee) {
+    public AttackWPlayer move(String kee) {
         if (kee.equals("left")) {
-            return new Player(new Posn(this.posn.x - movementSpeed, this.posn.y),
+            return new AttackWPlayer(new Posn(this.posn.x - movementSpeed, this.posn.y),
             this.b_width, this.b_height, this.movementSpeed, this.attackStat,
             this.money);
         } else if (kee.equals("right")) {
-            return new Player(new Posn(this.posn.x + movementSpeed, this.posn.y),
+            return new AttackWPlayer(new Posn(this.posn.x + movementSpeed, this.posn.y),
             this.b_width, this.b_height, this.movementSpeed, this.attackStat,
             this.money);
         } else if (kee.equals("up")) {
-            return new Player(new Posn(this.posn.x, this.posn.y - movementSpeed),
+            return new AttackWPlayer(new Posn(this.posn.x, this.posn.y - movementSpeed),
             this.b_width, this.b_height, this.movementSpeed, this.attackStat,
             this.money);
         } else if (kee.equals("down")) {
-            return new Player(new Posn(this.posn.x, this.posn.y + movementSpeed),
+            return new AttackWPlayer(new Posn(this.posn.x, this.posn.y + movementSpeed),
             this.b_width, this.b_height, this.movementSpeed, this.attackStat,
             this.money);
         } else {
@@ -60,12 +60,12 @@ public class Player {
         }
     }
 
-    public Player levelUp() {
+    public AttackWPlayer levelUp() {
         Random rand = new Random();
         int min = 1;
         int max = 3;
         int randUp = rand.nextInt((max - min) + 1) + min;
-        return new Player(this.posn, this.b_width, this.b_height,
+        return new AttackWPlayer(this.posn, this.b_width, this.b_height,
             this.movementSpeed + randUp, this.attackStat + randUp, this.money);
     }
     
