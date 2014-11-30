@@ -26,9 +26,10 @@ public class TestyGame {
      mob having a different amount of HP (color coded?). Your objective
      is to clear the game as quickly as possible. Of course, since you passively
      gain levels and ATT, the game will get easier to clear as more time passes.
-     - You are allowed to just AFK and gain levels and come back later and
-     clear the game, but the timer is always going.
-     - So the point would be to see if you can clear the game quickly with
+        - Rethinking - do we even need more than one mob? Why not just one giant mob
+          with a ton of HP that we need to strategically maneuver around to kill
+          as quickly as possible????
+     - The point would be to see if you can clear the game quickly with
      as low of a player level as possible.
      - Mobs will just be roaming around by themselves doing whatever. If they
      get hit, they will move the opposite direction of you (or run away from you).
@@ -41,6 +42,7 @@ public class TestyGame {
      - So we have the main mode, as described above
      - Second mode is the reverse! Player will die (game will end) if player gets
        hit by a mob. Player's job is to avoid/dodge all mobs for a set amount of time.
+       then it switches to first mode
      */
     public static void main(String[] args) {
         System.out.println("hello world!");
@@ -53,6 +55,10 @@ public class TestyGame {
         - Mobs move "randomly" (at least 3 ticks in one direction, then switch)
         - Mobs run away when hit by player
         
+        - Mode changes (to diff world) every x seconds/ticks
+            - Need method to change between each world? Using..ticks? -shrug-
+        - Player dies/game ends if they get hit in 2nd mode
+        - mode changes back to regular world after set amount of time
         
         */
     }
