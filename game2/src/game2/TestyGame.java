@@ -32,21 +32,29 @@ public class TestyGame {
      as low of a player level as possible.
      - Mobs will just be roaming around by themselves doing whatever. If they
      get hit, they will move the opposite direction of you (or run away from you).
-     - Each mob you kill will give you a certain amount of money (based on the mob's HP)
+     
     
-     - You can't die. You can't lose the game. Just for simplicity. Your validation
+     - You can't die in this mode. You can't lose the game. Just for simplicity. Your validation
      of success depends on how fast you can clock the game.
     
      *** MODES
      - So we have the main mode, as described above
-     - You can open up a store menu (other mode!). At the store, you can buy (with your money) items
-     that will increase your ATT stat, or increase your movement speed in the game.
-     - These items are stackable but will increase in price as you buy more. Be wise in your decisions.
-     - (Diminished rewards, son)
+     - Second mode is the reverse! Player will die (game will end) if player gets
+       hit by a mob. Player's job is to avoid/dodge all mobs for a set amount of time.
      */
     public static void main(String[] args) {
         System.out.println("hello world!");
         //....I need ideas!
+        
+        /*
+        Things to test/check
+        - Player movement speed works
+        - Player attack stat deals right amount of damage to mob
+        - Mobs move "randomly" (at least 3 ticks in one direction, then switch)
+        - Mobs run away when hit by player
+        
+        
+        */
     }
 
 }
