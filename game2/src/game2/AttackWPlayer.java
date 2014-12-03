@@ -26,7 +26,6 @@ public class AttackWPlayer {
     public int money = 0; //initial money
 
     public IColor color = new Green();
-       
 
     public AttackWPlayer(Posn posn, int b_width, int b_height,
             int movementSpeed, int attackStat, int money) {
@@ -37,24 +36,24 @@ public class AttackWPlayer {
         this.attackStat = attackStat;
         this.money = money;
     }
-    
+
     public AttackWPlayer move(String kee) {
         if (kee.equals("left")) {
             return new AttackWPlayer(new Posn(this.posn.x - movementSpeed, this.posn.y),
-            this.b_width, this.b_height, this.movementSpeed, this.attackStat,
-            this.money);
+                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
+                    this.money);
         } else if (kee.equals("right")) {
             return new AttackWPlayer(new Posn(this.posn.x + movementSpeed, this.posn.y),
-            this.b_width, this.b_height, this.movementSpeed, this.attackStat,
-            this.money);
+                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
+                    this.money);
         } else if (kee.equals("up")) {
             return new AttackWPlayer(new Posn(this.posn.x, this.posn.y - movementSpeed),
-            this.b_width, this.b_height, this.movementSpeed, this.attackStat,
-            this.money);
+                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
+                    this.money);
         } else if (kee.equals("down")) {
             return new AttackWPlayer(new Posn(this.posn.x, this.posn.y + movementSpeed),
-            this.b_width, this.b_height, this.movementSpeed, this.attackStat,
-            this.money);
+                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
+                    this.money);
         } else {
             return this;
         }
@@ -66,9 +65,9 @@ public class AttackWPlayer {
         int max = 3;
         int randUp = rand.nextInt((max - min) + 1) + min;
         return new AttackWPlayer(this.posn, this.b_width, this.b_height,
-            this.movementSpeed + randUp, this.attackStat + randUp, this.money);
+                this.movementSpeed + randUp, this.attackStat + randUp, this.money);
     }
-    
+
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);
     }

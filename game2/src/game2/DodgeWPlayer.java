@@ -11,24 +11,23 @@ import javalib.worldcanvas.*;
 import javalib.worldimages.*;
 
 public class DodgeWPlayer {
-    
+
     public AttackWPlayer awp; //?? initialize to be the current attackWplayer..? how
     public Posn posn;
-    
+
     public int b_width;
     public int b_height;
-    
+
     public int width = 15;
     public int height = 20;
-    
+
 //    public int movementSpeed = awp.movementSpeed;
 //    public int attackStat = awp.attackStat;
 //    public int money = awp.money;
-    
     public int movementSpeed;
     public int attackStat;
     public int money;
-    
+
     public IColor color = new Blue();
 
     public DodgeWPlayer(AttackWPlayer awp) { // make sure 2nd world player is same?
@@ -39,10 +38,32 @@ public class DodgeWPlayer {
         this.attackStat = awp.attackStat;
         this.money = awp.money;
     }
-    
+
     public DodgeWPlayer move(String kee) {
         if (kee.equals("left")) {
-            return new DodgeWPlayer((awp.move("left")));
+//            return new DodgeWPlayer((awp.move("left"))); // need to initialize awp tho
+            return new DodgeWPlayer(
+                    new AttackWPlayer(new Posn(this.posn.x - movementSpeed, this.posn.y),
+                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
+                    this.money));
+        } else if (kee.equals("right")) {
+            return new DodgeWPlayer(
+                    new AttackWPlayer(new Posn(this.posn.x + movementSpeed, this.posn.y),
+                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
+                    this.money));
+        } else if (kee.equals("up")) {
+            return new DodgeWPlayer(
+                    new AttackWPlayer(new Posn(this.posn.x, this.posn.y - movementSpeed),
+                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
+                    this.money));
+        } else if (kee.equals("down")) {
+            return new DodgeWPlayer(
+                    new AttackWPlayer(new Posn(this.posn.x, this.posn.y + movementSpeed),
+                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
+                    this.money));
+        } else {
+            return this;
         }
     }
+}
 }
