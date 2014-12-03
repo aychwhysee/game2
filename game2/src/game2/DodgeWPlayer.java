@@ -63,6 +63,12 @@ public class DodgeWPlayer {
     }
 
     // Not going to deal with leveling up in this world.
+    
+    // checking mob hits
+    // - top border of mob needs to be > bot border of player && bottom border of
+    //   mob needs to be < top border of player for checking left/right (extremes)
+    
+    
     public boolean hitOnLeft(DodgeWMob mob) {
         // check left
         return ((mob.posn.x + mob.width / 2 >= this.posn.x - this.width / 2)
@@ -72,9 +78,9 @@ public class DodgeWPlayer {
     
     public boolean hitOnRight(DodgeWMob mob) {
         // check right
-        return ((player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
-                && (player.posn.y - player.height / 2 <= this.posn.y + this.height / 2)
-                && (player.posn.y + player.height / 2 >= this.posn.y - this.height / 2));
+        return ((mob.posn.x - mob.width / 2 <= this.posn.x + this.width / 2)
+                && (mob.posn.y - mob.height / 2 <= this.posn.y + this.height / 2)
+                && (mob.posn.y + mob.height / 2 >= this.posn.y - this.height / 2));
     }
     
     public WorldImage drawImage() {

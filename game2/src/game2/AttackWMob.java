@@ -121,6 +121,8 @@ public class AttackWMob {
             return this;
         }
     }
+    
+    // re-check these later, since we're changing some dimensions around
 
     public boolean hitOnLeft(AttackWPlayer player) {
         // check left x posn
