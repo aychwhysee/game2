@@ -102,22 +102,23 @@ public class AttackWMob {
             this.health--;
             for (int i = 0; i < 5; i++) {
                 return new AttackWMob(
-                new Posn(this.posn.x, this.posn.y + this.speed),
-                this.b_width,
-                this.b_height,
-                this.health);
-            } 
+                        new Posn(this.posn.x, this.posn.y + this.speed),
+                        this.b_width,
+                        this.b_height,
+                        this.health);
+            }
         } else if (this.hitOnBot(player)) {
             this.health--;
             for (int i = 0; i < 5; i++) {
                 return new AttackWMob(
-                new Posn(this.posn.x, this.posn.y - this.speed),
-                this.b_width,
-                this.b_height,
-                this.health);
+                        new Posn(this.posn.x, this.posn.y - this.speed),
+                        this.b_width,
+                        this.b_height,
+                        this.health);
             }
-        } else 
+        } else {
             return this;
+        }
     }
 
     public boolean hitOnLeft(AttackWPlayer player) {
@@ -165,7 +166,6 @@ public class AttackWMob {
 //    public ListMobs removeDead(ListMobs lm) {
 //        return lm.remove(this); //???
 //    }
-
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);
     }

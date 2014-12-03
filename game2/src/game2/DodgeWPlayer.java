@@ -26,7 +26,7 @@ public class DodgeWPlayer {
 //    public int money = awp.money;
     public int movementSpeed;
     public int attackStat;
-    public int money;
+//    public int money;
 
     public IColor color = new Blue();
 
@@ -36,7 +36,7 @@ public class DodgeWPlayer {
         this.b_height = awp.b_height;
         this.movementSpeed = awp.movementSpeed;
         this.attackStat = awp.attackStat;
-        this.money = awp.money;
+//        this.money = awp.money;
     }
 
     public DodgeWPlayer move(String kee) {
@@ -44,26 +44,36 @@ public class DodgeWPlayer {
 //            return new DodgeWPlayer((awp.move("left"))); // need to initialize awp tho
             return new DodgeWPlayer(
                     new AttackWPlayer(new Posn(this.posn.x - movementSpeed, this.posn.y),
-                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
-                    this.money));
+                            this.b_width, this.b_height, this.movementSpeed, this.attackStat));
         } else if (kee.equals("right")) {
             return new DodgeWPlayer(
                     new AttackWPlayer(new Posn(this.posn.x + movementSpeed, this.posn.y),
-                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
-                    this.money));
+                            this.b_width, this.b_height, this.movementSpeed, this.attackStat));
         } else if (kee.equals("up")) {
             return new DodgeWPlayer(
                     new AttackWPlayer(new Posn(this.posn.x, this.posn.y - movementSpeed),
-                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
-                    this.money));
+                            this.b_width, this.b_height, this.movementSpeed, this.attackStat));
         } else if (kee.equals("down")) {
             return new DodgeWPlayer(
                     new AttackWPlayer(new Posn(this.posn.x, this.posn.y + movementSpeed),
-                    this.b_width, this.b_height, this.movementSpeed, this.attackStat,
-                    this.money));
+                            this.b_width, this.b_height, this.movementSpeed, this.attackStat));
         } else {
             return this;
         }
     }
-}
+
+    // Not going to deal with leveling up in this world.
+    public boolean hitOnLeft(DodgeWMob mob) {
+        // check left
+        return ((mob.posn.x + mob.width / 2 >= this.posn.x - this.width / 2)
+                && (mob.posn.y - mob.height / 2 <= this.posn.y + this.height / 2)
+                && (mob.posn.y + mob.height / 2 >= this.posn.y - this.height / 2));
+    }
+    
+    public boolean hitOnRight(DodgeWMob mob) {
+        // check right
+        return ((player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
+                && (player.posn.y - player.height / 2 <= this.posn.y + this.height / 2)
+                && (player.posn.y + player.height / 2 >= this.posn.y - this.height / 2));
+    }
 }

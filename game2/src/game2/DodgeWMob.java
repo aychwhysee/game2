@@ -11,5 +11,6 @@ import javalib.worldcanvas.*;
 import javalib.worldimages.*;
 
 public class DodgeWMob {
-
+    
+    public Posn posn;
 }
