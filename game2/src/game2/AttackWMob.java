@@ -20,16 +20,17 @@ public class AttackWMob {
 
     public Posn posn; // each mob has a posn
 
-    public int speed = 10; // mob speed (should all be the same)
+    public final int speed = 12; // mob speed. will always be this speed.
     public int b_width; //board width
     public int b_height; //board height
 
-    public final int width = 30; //mob width
-    public final int height = 30; // mob height
+    public final int width = 60; //mob width
+    public final int height = 60; // mob height
 
     public int health; // mob HP
+    // initial health = ?
 
-    public IColor color = new Red(); // But I need a dif col for each mob
+    public IColor color = new Red();
 
     public Random random = new Random();
 

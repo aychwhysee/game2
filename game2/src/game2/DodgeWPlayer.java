@@ -76,4 +76,11 @@ public class DodgeWPlayer {
                 && (player.posn.y - player.height / 2 <= this.posn.y + this.height / 2)
                 && (player.posn.y + player.height / 2 >= this.posn.y - this.height / 2));
     }
+    
+    public WorldImage drawImage() {
+        return new RectangleImage(this.posn, this.width, this.height, this.color);
+    }
+    
+    
+    
 }
