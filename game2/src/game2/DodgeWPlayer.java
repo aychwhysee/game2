@@ -12,7 +12,7 @@ import javalib.worldimages.*;
 
 public class DodgeWPlayer {
     
-//    public AttackWPlayer awp;
+    public AttackWPlayer awp; //?? initialize to be the current attackWplayer..? how
     public Posn posn;
     
     public int b_width;
@@ -40,5 +40,9 @@ public class DodgeWPlayer {
         this.money = awp.money;
     }
     
-    
+    public DodgeWPlayer move(String kee) {
+        if (kee.equals("left")) {
+            return new DodgeWPlayer((awp.move("left")));
+        }
+    }
 }
