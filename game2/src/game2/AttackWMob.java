@@ -38,7 +38,7 @@ public class AttackWMob {
         this.b_width = b_width;
         this.b_height = b_height;
         this.health = health;
-        this.posn = new Posn(randomX(b_width), randomY(b_height));
+        this.posn = new Posn(randomX(b_width), randomY(b_height)); //random starting posn
     }
 
     public AttackWMob(Posn posn, int b_width, int b_height, int health) {
