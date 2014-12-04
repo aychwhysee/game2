@@ -11,6 +11,17 @@ import javalib.worldcanvas.*;
 import javalib.worldimages.*;
 
 public class DodgeWPlayer {
+    
+    // backup plan: just have the dodgeworld be a game with just fresh
+    // mob and player?
+    
+    // wait a minute.
+    // Do I even need separate player and mob classes for the 2nd world?
+    // They're doing the same behavior, except in one world the mob
+    // is vulnerable and the player is invulnerable, and in the other world
+    // the player is vulnerable and the mob is invulnerable.
+    // The only difference in the worlds would be that, and also the color
+    // of each entity. Hmmmmmmmmm............
 
     public AttackWPlayer awp; //?? initialize to be the current attackWplayer..? how
     public Posn posn;
