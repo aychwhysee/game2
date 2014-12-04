@@ -121,15 +121,15 @@ public class AttackWMob {
             return this;
         }
     }
-    
-    // re-check these later, since we're changing some dimensions around
 
+    // re-check these later, since we're changing some dimensions around
     // If we don't need another mob class for other mode...
     // Then these checkers would just be used in first mode. Need another
     // set of checkers for second mode, but in player class.
     public boolean hitOnLeft(AttackWPlayer player) {
         // check left x posn
         return ((player.posn.x + player.width / 2 >= this.posn.x - this.width / 2)
+                && (player.posn.x + player.width / 2 <= this.posn.x + this.width / 2)
                 && (player.posn.y - player.height / 2 <= this.posn.y + this.height / 2)
                 && (player.posn.y + player.height / 2 >= this.posn.y - this.height / 2));
     }
@@ -137,6 +137,7 @@ public class AttackWMob {
     public boolean hitOnRight(AttackWPlayer player) {
         // check right x posn
         return ((player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
+                && (player.posn.x - player.width / 2 >= this.posn.x - this.width / 2)
                 && (player.posn.y - player.height / 2 <= this.posn.y + this.height / 2)
                 && (player.posn.y + player.height / 2 >= this.posn.y - this.height / 2));
     }
@@ -144,13 +145,15 @@ public class AttackWMob {
     public boolean hitOnTop(AttackWPlayer player) {
         // check top y posn
         return ((player.posn.y + player.height / 2 >= this.posn.y - this.height / 2)
+                && (player.posn.y + player.height / 2 <= this.posn.y + this.height / 2)
                 && (player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
                 && (player.posn.x + player.width / 2 >= this.posn.x - this.width / 2));
     }
 
     public boolean hitOnBot(AttackWPlayer player) {
         // check bottom y posn
-        return ((player.posn.y - player.height / 2 >= this.posn.y + this.height / 2)
+        return ((player.posn.y - player.height / 2 <= this.posn.y + this.height / 2)
+                && (player.posn.y - player.height / 2 >= this.posn.y - this.height / 2)
                 && (player.posn.x - player.width / 2 <= this.posn.x + this.width / 2)
                 && (player.posn.x + player.width / 2 >= this.posn.x - this.width / 2));
     }
@@ -169,9 +172,6 @@ public class AttackWMob {
         }
     }
 
-//    public ListMobs removeDead(ListMobs lm) {
-//        return lm.remove(this); //???
-//    }
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);
     }
