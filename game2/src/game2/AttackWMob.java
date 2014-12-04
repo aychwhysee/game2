@@ -30,7 +30,7 @@ public class AttackWMob {
     public int health; // mob HP
     // initial health = ?
 
-    public IColor color = new Red();
+    public IColor color = new Red(); //fix later for color change in other world
 
     public Random random = new Random();
 

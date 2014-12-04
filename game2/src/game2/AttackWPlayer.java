@@ -25,7 +25,7 @@ public class AttackWPlayer {
     public int attackStat = 1; //initial att
 //    public int money = 0; //initial money---dont need money anymore
 
-    public IColor color = new Green();
+    public IColor color = new Green(); // fix later for changing colors in transition b/w modes
 
     public AttackWPlayer(Posn posn, int b_width, int b_height,
             int movementSpeed, int attackStat) {
