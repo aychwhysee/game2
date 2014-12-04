@@ -122,10 +122,13 @@ public class AttackWMob {
         }
     }
 
-    // re-check these later, since we're changing some dimensions around
     // If we don't need another mob class for other mode...
     // Then these checkers would just be used in first mode. Need another
     // set of checkers for second mode, but in player class.
+    
+    // need four separate checkers since mob will need to react depending on
+    // which side it was hit on.
+    
     public boolean hitOnLeft(AttackWPlayer player) {
         // check left x posn
         return ((player.posn.x + player.width / 2 >= this.posn.x - this.width / 2)

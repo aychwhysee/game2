@@ -20,7 +20,7 @@ public class AttackWPlayer {
     public int width = 15;
     public int height = 20;
 
-    // Eh, maybe too many player attributes to handle..?
+    // Eh, maybe too many player attributes to handle..? not anymore hopefully
     public int movementSpeed = 5; //initial movementSpeed
     public int attackStat = 1; //initial att
 //    public int money = 0; //initial money---dont need money anymore
@@ -63,6 +63,23 @@ public class AttackWPlayer {
         return new AttackWPlayer(this.posn, this.b_width, this.b_height,
                 this.movementSpeed + randUp, this.attackStat + randUp);
     }
+
+    //hit checkers, for use in 2nd mode/world
+    // Helper: Check left and right
+    public boolean hitByMobX(AttackWMob mob) {
+        return (mob.posn.x + mob.width / 2 >= this.posn.x - this.width / 2)
+                && (mob.posn.x - mob.width / 2 <= this.posn.x + this.width / 2);
+    }
+
+    // Helper: check top and bot; Check for both X && Y in world class to confirm touch
+    public boolean hitByMobY(AttackWMob mob) {
+        return (mob.posn.y + mob.height / 2 >= this.posn.y - this.height / 2)
+                && (mob.posn.y - mob.height / 2 <= this.posn.y + this.height / 2);
+    }
+    
+//    public boolean hitAtAll(AttackWMob mob) {
+//        return (this.hitByMobX(mob) && this.hitByMobY(mob));
+//    }
 
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);
