@@ -56,7 +56,11 @@ public class AttackWMob {
         return random.nextInt(b_height - (height * 2)) + height;
     }
 
-    public AttackWMob move() {
+    public AttackWMob move() { 
+        // hmm...need variable to keep track of last movement direction?
+        // have die roll that is weighted towards last dir?
+        // OR DON'T EVEN JUST HAVE THIS, AND ONLY HAVE THE MOB REACT TO PLAYER
+        // WHEN IT IS TOUCHED. SIMPLIFICATION AND STILL MEETING THE REQS? 
         int min = 1;
         int max = 4;
         int randomDir = random.nextInt((max - min) + 1) + min;
