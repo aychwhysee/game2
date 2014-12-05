@@ -86,7 +86,7 @@ public class AttackWMob {
         // Want to make it move away 5 times so using a forloop, but I don't
         // think it'll work. It'll just create 5 new mobs no?...... :(
         if (this.hitOnLeft(player)) {
-            this.health--;
+            this.health = this.health - player.attackStat;
             for (int i = 0; i < 5; i++) {
                 return new AttackWMob(
                         new Posn(this.posn.x + this.speed, this.posn.y),
@@ -95,7 +95,7 @@ public class AttackWMob {
                         this.health);
             }
         } else if (this.hitOnRight(player)) {
-            this.health--;
+            this.health = this.health - player.attackStat;
             for (int i = 0; i < 5; i++) {
                 return new AttackWMob(
                         new Posn(this.posn.x - this.speed, this.posn.y),
@@ -104,7 +104,7 @@ public class AttackWMob {
                         this.health);
             }
         } else if (this.hitOnTop(player)) {
-            this.health--;
+            this.health = this.health - player.attackStat;
             for (int i = 0; i < 5; i++) {
                 return new AttackWMob(
                         new Posn(this.posn.x, this.posn.y + this.speed),
@@ -113,7 +113,7 @@ public class AttackWMob {
                         this.health);
             }
         } else if (this.hitOnBot(player)) {
-            this.health--;
+            this.health = this.health - player.attackStat;
             for (int i = 0; i < 5; i++) {
                 return new AttackWMob(
                         new Posn(this.posn.x, this.posn.y - this.speed),

@@ -15,6 +15,7 @@ public class DodgeWorld extends World {
     public static final int b_width = 800;
     public static final int b_height = 800;
 
+    public int score;
     public int timer;
     // once timer gets to 0, game will switch to attackworld mode
 
@@ -23,7 +24,19 @@ public class DodgeWorld extends World {
 
     public boolean gameOver; // will be 'true' once player gets hit by mob.
 
-    public DodgeWorld(AttackWPlayer player, AttackWMob mob, int timer,
+    public DodgeWorld() {
+        super();
+        this.player = new AttackWPlayer(new Posn(b_width / 2, 750), b_width, b_height,
+                5, 1);
+        this.player.color = new Green();
+        this.mob = new AttackWMob(b_width, b_height, 200);
+        this.mob.color = new Red();
+        this.timer = 300;
+        this.gameOver = false;
+        this.score = 0;
+    }
+
+    public DodgeWorld(AttackWPlayer player, AttackWMob mob, int score, int timer,
             boolean gameOver) {
         this.player = player;
         player.color = new Blue(); //? need to make sure this is correct
@@ -31,6 +44,7 @@ public class DodgeWorld extends World {
         mob.color = new Yellow(); //? same here
         this.timer = timer;
         this.gameOver = gameOver;
+        this.score = score;
     }
 
     public World onTick() {
@@ -42,18 +56,19 @@ public class DodgeWorld extends World {
         // mob.chase(new_player); // need to write this later
         if (timer <= 0) { // change world here?
             return this.changeMode();// maybe not here. hmmmmmmmmmmmmmmmmmmm
+        } else {
+            return new DodgeWorld(new_player, mob.chase(new_player), timer, gameOver);
         }
-        return new DodgeWorld(new_player, mob.chase(new_player), timer, gameOver);
     }
-    
+
     public AttackWorld changeMode() {
-        return new AttackWorld(); //fix
+        return new AttackWorld(this.player, this.mob, this.score, 1000, false); //fix
     }
 
     public World onKeyEvent(String kee) {
         if (kee.equals("left") || kee.equals("right")
                 || kee.equals("up") || kee.equals("down")) {
-            return new DodgeWorld(player.move(kee), mob, timer, gameOver);
+            return new DodgeWorld(player.move(kee), mob, score, timer, gameOver);
         } else {
             return this;
         }
@@ -76,7 +91,7 @@ public class DodgeWorld extends World {
                 new Posn(b_width / 2, b_height / 2),
                 b_width,
                 b_height,
-                new Black());
+                new Red());
     }
 
     public WorldImage scoreImage() {
@@ -84,7 +99,7 @@ public class DodgeWorld extends World {
                 new Posn(750, 25),
                 ("Timer: " + this.timer),
                 14,
-                new Green());
+                new White());
     }
 
     public WorldImage makeImage() {
