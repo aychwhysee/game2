@@ -26,9 +26,9 @@ public class DodgeWorld extends World {
     public DodgeWorld(AttackWPlayer player, AttackWMob mob, int timer,
             boolean gameOver) {
         this.player = player;
-        player.color = new Blue();
+        player.color = new Blue(); //? need to make sure this is correct
         this.mob = mob;
-        mob.color = new Yellow();
+        mob.color = new Yellow(); //? same here
         this.timer = timer;
         this.gameOver = gameOver;
     }
