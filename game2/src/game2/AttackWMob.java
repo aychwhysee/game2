@@ -125,6 +125,8 @@ public class AttackWMob {
             return this;
         }
     }
+    
+    // WRITE A CHASE METHOD BRUH
 
     // If we don't need another mob class for other mode...
     // Then these checkers would just be used in first mode. Need another
