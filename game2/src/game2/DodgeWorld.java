@@ -41,9 +41,13 @@ public class DodgeWorld extends World {
         timer--;
         // mob.chase(new_player); // need to write this later
         if (timer <= 0) { // change world here?
-            return // maybe not here. hmmmmmmmmmmmmmmmmmmm
+            return this.changeMode();// maybe not here. hmmmmmmmmmmmmmmmmmmm
         }
         return new DodgeWorld(new_player, mob.chase(new_player), timer, gameOver);
+    }
+    
+    public AttackWorld changeMode() {
+        return new AttackWorld(); //fix
     }
 
     public World onKeyEvent(String kee) {
