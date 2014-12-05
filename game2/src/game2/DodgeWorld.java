@@ -26,7 +26,9 @@ public class DodgeWorld extends World {
     public DodgeWorld(AttackWPlayer player, AttackWMob mob, int timer,
             boolean gameOver) {
         this.player = player;
+        player.color = new Blue();
         this.mob = mob;
+        mob.color = new Yellow();
         this.timer = timer;
         this.gameOver = gameOver;
     }
@@ -48,5 +50,38 @@ public class DodgeWorld extends World {
         } else {
             return this;
         }
+    }
+
+    public WorldEnd worldEnds() {
+        if (gameOver) {
+            return new WorldEnd(true, new OverlayImages(this.makeImage(),
+                    new TextImage(new Posn(b_width / 2, b_height / 2),
+                            ("Game over! You got hit. You don't deserve a score."),
+                            14,
+                            new White())));
+        } else {
+            return new WorldEnd(false, this.makeImage());
+        }
+    }
+
+    public WorldImage board() {
+        return new RectangleImage(
+                new Posn(b_width / 2, b_height / 2),
+                b_width,
+                b_height,
+                new Black());
+    }
+
+    public WorldImage scoreImage() {
+        return new TextImage(
+                new Posn(750, 25),
+                ("Timer: " + this.timer),
+                14,
+                new Green());
+    }
+
+    public WorldImage makeImage() {
+        return new OverlayImages(board(), new OverlayImages(mob.drawImage(),
+                new OverlayImages(player.drawImage(), scoreImage())));
     }
 }
