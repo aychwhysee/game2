@@ -16,6 +16,7 @@ public class AttackWorld extends World {
     public static final int b_height = 800;
     
     public int score; //will literally just be a tick counter
+    public int timer; //will determine when to switch to Dodge mode
     
     public AttackWPlayer player;
     public AttackWMob mob;
