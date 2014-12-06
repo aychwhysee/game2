@@ -52,13 +52,18 @@ public class AttackWorld extends World {
             gameOver = true;
         }
         score++;
-        if (score % 480 == 1) {
-            player.levelUp();
+        if (score % 480 == 0) {
+//            player.levelUp(); //not working...?
+//            return new AttackWorld(player, mob.react(player), score, timer,
+//                    gameOver);
 //            return new TextImage(
 //            new Posn(500, 250),
 //            ("Level up!"),
 //            20,
 //            new White());
+            this.player.attackStat = this.player.attackStat + 5;
+            this.player.movementSpeed = this.player.movementSpeed + 5;
+            // ^ but this works. hmm. So .levelup() method doesn't work lol.
         }
         timer--;
         if (timer <= 0) {
@@ -127,10 +132,29 @@ public class AttackWorld extends World {
                 new Green());
     }
 
+    public WorldImage playerATTImage() {
+        return new TextImage(
+                new Posn(250, 25),
+                ("Player ATT: " + this.player.attackStat),
+                14,
+                new Green());
+    }
+
+    public WorldImage playerSPDImage() {
+        return new TextImage(
+                new Posn(750, 25),
+                ("Player SPD: " + this.player.movementSpeed),
+                14,
+                new Green());
+    }
+
     public WorldImage makeImage() {
         return new OverlayImages(board(), new OverlayImages(mob.drawImage(),
                 new OverlayImages(player.drawImage(), new OverlayImages(scoreImage(),
-                                new OverlayImages(mobHPImage(), timerImage())))));
+                                new OverlayImages(mobHPImage(),
+                                        new OverlayImages(playerATTImage(),
+                                                new OverlayImages(playerSPDImage(),
+                                                        timerImage())))))));
     }
 
 }
