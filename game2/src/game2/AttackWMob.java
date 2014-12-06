@@ -163,6 +163,61 @@ public class AttackWMob {
         // but how do I keep it moving? if hitOnLeft, move right X amt of times
         // and then take a diff dir, OR just keep moving right until hit again?
         // So need a move(dir) function that takes in a dir and moves mob in that dir?
+        if (this.hitOnLeft(player)) {
+            this.health = this.health - player.attackStat;
+            return this.move(1);
+        }
+    }
+
+    public AttackWMob move(int dir) {
+        // 1 = left, 2 = right, 3 = up, 4 = down
+        // random thing just in case..
+//        int min = 1;
+//        int max = 4;
+//        int randomDir = random.nextInt((max - min) + 1) + min;
+        if (dir == 1) {
+            if (this.posn.x - this.width / 2 <= 0) {
+                return this.move(2);
+            } else {
+                return new AttackWMob(
+                        new Posn(this.posn.x - this.speed, this.posn.y),
+                        this.b_width,
+                        this.b_height,
+                        this.health);
+            }
+        } else if (dir == 2) {
+            if (this.posn.x + this.width / 2 >= b_width) {
+                return this.move(1);
+            } else {
+                return new AttackWMob(
+                        new Posn(this.posn.x + this.speed, this.posn.y),
+                        this.b_width,
+                        this.b_height,
+                        this.health);
+            }
+        } else if (dir == 3) {
+            if (this.posn.y - this.height / 2 <= 0) {
+                return this.move(4);
+            } else {
+                return new AttackWMob(
+                        new Posn(this.posn.x, this.posn.y - this.speed),
+                        this.b_width,
+                        this.b_height,
+                        this.health);
+            }
+        } else if (dir == 4) {
+            if (this.posn.y + this.height/2 >= b_height) {
+                return this.move(3);
+            } else {
+                return new AttackWMob(
+                new Posn(this.posn.x, this.posn.y + this.speed),
+                this.b_width,
+                this.b_height,
+                this.health);
+            }
+        } else {
+            return this;
+        }
     }
 
     // WRITE A CHASE METHOD BRUH
@@ -208,14 +263,14 @@ public class AttackWMob {
                 || this.hitOnTop(player) || this.hitOnBot(player));
     } // I have no idea what I'm doing
 
-    public boolean isDeadHuh() {
-        // check Mob health. if < 0, return true; else false.
-        if (this.health <= 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean isDeadHuh() {
+//         //check Mob health. if < 0, return true; else false.
+//        if (this.health <= 0) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);
