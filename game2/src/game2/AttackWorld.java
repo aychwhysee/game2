@@ -12,8 +12,8 @@ import javalib.worldimages.*;
 
 public class AttackWorld extends World {
 
-    public static final int b_width = 1200;
-    public static final int b_height = 1200;
+    public static final int b_width = 1000;
+    public static final int b_height = 1000;
 
     public int score; //will literally just be a tick counter
     public int timer; //will determine when to switch to Dodge mode
@@ -25,7 +25,7 @@ public class AttackWorld extends World {
 
     public AttackWorld() { //init
         super();
-        this.player = new AttackWPlayer(new Posn(b_width / 2, 1100), b_width, b_height,
+        this.player = new AttackWPlayer(new Posn(b_width / 2, 900), b_width, b_height,
                 5, 1);
         this.player.color = new Green();
         this.mob = new AttackWMob(b_width, b_height, 200);
@@ -100,7 +100,7 @@ public class AttackWorld extends World {
 
     public WorldImage scoreImage() {
         return new TextImage(
-                new Posn(600, 25),
+                new Posn(500, 25),
                 ("Score: " + this.score),
                 14,
                 new Green());
@@ -116,7 +116,7 @@ public class AttackWorld extends World {
 
     public WorldImage timerImage() {
         return new TextImage(
-                new Posn(1100, 25),
+                new Posn(900, 25),
                 ("Timer: " + this.timer),
                 14,
                 new Green());
