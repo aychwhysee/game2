@@ -125,30 +125,52 @@ public class AttackWMob {
 //            return this;
 //        }
 //    }
-    
     // To be used in DodgeWorld
     public AttackWMob chase(AttackWPlayer player) {
         // Compare player.posn and this.posn. If player.posn.x < this.posn.x make
         // the mob move left (towards player), and similar algorithms for
         // other way and down/up. Is this a correct way of thinking about it?
-    }
-    
-    // To be used in AttackWorld
+        if (player.posn.x < this.posn.x) {
+            return new AttackWMob(
+                    new Posn(this.posn.x - this.speed, this.posn.y),
+                    this.b_width,
+                    this.b_height,
+                    this.health);
+        } else if (player.posn.x > this.posn.x) {
+            return new AttackWMob(
+                    new Posn(this.posn.x + this.speed, this.posn.y),
+                    this.b_width,
+                    this.b_height,
+                    this.health);
+        } else if (player.posn.y < this.posn.y) {
+            return new AttackWMob(
+                    new Posn(this.posn.x, this.posn.y - this.speed),
+                    this.b_width,
+                    this.b_height,
+                    this.health);
+        } else if (player.posn.y > this.posn.y) {
+            return new AttackWMob(
+                    new Posn(this.posn.x, this.posn.y + this.speed),
+                    this.b_width,
+                    this.b_height,
+                    this.health);
+        } else {
+            return this;
+        }
+        // To be used in AttackWorld
     public AttackWMob react(AttackWPlayer player) {
         // use the below checkers to make mob react into opposite direction...
         // but how do I keep it moving? if hitOnLeft, move right X amt of times
         // and then take a diff dir, OR just keep moving right until hit again?
+        // So need a move(dir) function that takes in a dir and moves mob in that dir?
     }
-    
-    // WRITE A CHASE METHOD BRUH
 
+    // WRITE A CHASE METHOD BRUH
     // If we don't need another mob class for other mode...
     // Then these checkers would just be used in first mode. Need another
     // set of checkers for second mode, but in player class.
-    
     // need four separate checkers since mob will need to react depending on
     // which side it was hit on.
-    
     public boolean hitOnLeft(AttackWPlayer player) {
         // check left x posn
         return ((player.posn.x + player.width / 2 >= this.posn.x - this.width / 2)
