@@ -65,8 +65,9 @@ public class AttackWorld extends World {
             int min = 1;
             int max = 3;
             int randUp = rand.nextInt((max - min) + 1) + min;
+            int randUp2 = rand.nextInt((max - min) + 1) + min;
             this.player.attackStat = this.player.attackStat + randUp;
-            this.player.movementSpeed = this.player.movementSpeed + randUp;
+            this.player.movementSpeed = this.player.movementSpeed + randUp2;
             // ^ but this works. hmm. So .levelup() method doesn't work lol.
         }
         timer--;
@@ -95,7 +96,7 @@ public class AttackWorld extends World {
         if (gameOver) {
             return new WorldEnd(true, new OverlayImages(this.makeImage(),
                     new TextImage(new Posn(b_width / 2, b_height / 2),
-                            ("You beat the monster! It took you " + this.score/30
+                            ("You beat the monster! It took you " + this.score/30.0
                             + " seconds to win. Aim lower next time!"),
                             14,
                             new White())));
