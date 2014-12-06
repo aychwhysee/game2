@@ -31,7 +31,7 @@ public class DodgeWorld extends World {
         this.player.color = new Blue();
         this.mob = new AttackWMob(b_width, b_height, 200);
         this.mob.color = new Yellow();
-        this.timer = 30000; // fix later
+        this.timer = 300; // fix later
         this.gameOver = false;
         this.score = 0;
     }

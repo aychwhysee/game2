@@ -28,7 +28,7 @@ public class AttackWorld extends World {
         this.player = new AttackWPlayer(new Posn(b_width / 2, 900), b_width, b_height,
                 15, 1);
         this.player.color = new Green();
-        this.mob = new AttackWMob(b_width, b_height, 200);
+        this.mob = new AttackWMob(b_width, b_height, 15000);
         this.mob.color = new Red();
         this.score = 0;
         this.timer = 1000;
@@ -54,6 +54,11 @@ public class AttackWorld extends World {
         score++;
         if (score % 480 == 1) {
             player.levelUp();
+//            return new TextImage(
+//            new Posn(500, 250),
+//            ("Level up!"),
+//            20,
+//            new White());
         }
         timer--;
         if (timer <= 0) {

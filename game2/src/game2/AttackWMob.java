@@ -126,6 +126,7 @@ public class AttackWMob {
 //        }
 //    }
     // To be used in DodgeWorld
+    // Makes the game very difficult! :D
     public AttackWMob chase(AttackWPlayer player) {
         // Compare player.posn and this.posn. If player.posn.x < this.posn.x make
         // the mob move left (towards player), and similar algorithms for
@@ -169,9 +170,28 @@ public class AttackWMob {
         // but how do I keep it moving? if hitOnLeft, move right X amt of times
         // and then take a diff dir, OR just keep moving right until hit again?
         // So need a move(dir) function that takes in a dir and moves mob in that dir?
-        if (this.hitOnLeft(player)) {
+        if (player.posn.x < this.posn.x - this.width / 2) {
+            return this.move(2);
+        } else if (player.posn.x > this.posn.x + this.width / 2) {
+            return this.move(1);
+        } else if (player.posn.y < this.posn.y - this.height / 2) {
+            return this.move(4);
+        } else if (player.posn.y > this.posn.y + this.height / 2) {
+            return this.move(3);
+        } else if (this.hitOnRight(player)) {
             this.health = this.health - player.attackStat;
             return this.move(1);
+        } else if (this.hitOnLeft(player)) {
+            this.health = this.health - player.attackStat;
+            return this.move(2);
+        } else if (this.hitOnBot(player)) {
+            this.health = this.health - player.attackStat;
+            return this.move(3);
+        } else if (this.hitOnTop(player)) {
+            this.health = this.health - player.attackStat;
+            return this.move(4);
+        } else {
+            return this;
         }
         // IDEA: instead of just making it react whenever it gets hit, just
         //       have the mob always running away from the player? lol
@@ -185,7 +205,7 @@ public class AttackWMob {
 //        int randomDir = random.nextInt((max - min) + 1) + min;
         if (dir == 1) {
             if (this.posn.x - this.width / 2 <= 0) {
-                return this.move(2);
+                return this.move(4);
             } else {
                 return new AttackWMob(
                         new Posn(this.posn.x - this.speed, this.posn.y),
@@ -195,7 +215,7 @@ public class AttackWMob {
             }
         } else if (dir == 2) {
             if (this.posn.x + this.width / 2 >= b_width) {
-                return this.move(1);
+                return this.move(3);
             } else {
                 return new AttackWMob(
                         new Posn(this.posn.x + this.speed, this.posn.y),
@@ -205,7 +225,7 @@ public class AttackWMob {
             }
         } else if (dir == 3) {
             if (this.posn.y - this.height / 2 <= 0) {
-                return this.move(4);
+                return this.move(1);
             } else {
                 return new AttackWMob(
                         new Posn(this.posn.x, this.posn.y - this.speed),
@@ -215,7 +235,7 @@ public class AttackWMob {
             }
         } else if (dir == 4) {
             if (this.posn.y + this.height / 2 >= b_height) {
-                return this.move(3);
+                return this.move(2);
             } else {
                 return new AttackWMob(
                         new Posn(this.posn.x, this.posn.y + this.speed),
