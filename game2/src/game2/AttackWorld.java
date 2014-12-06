@@ -26,7 +26,7 @@ public class AttackWorld extends World {
     public AttackWorld() { //init
         super();
         this.player = new AttackWPlayer(new Posn(b_width / 2, 900), b_width, b_height,
-                15, 1);
+                10, 1);
         this.player.color = new Green();
         this.mob = new AttackWMob(b_width, b_height, 15000);
         this.mob.color = new Red();
@@ -95,8 +95,8 @@ public class AttackWorld extends World {
         if (gameOver) {
             return new WorldEnd(true, new OverlayImages(this.makeImage(),
                     new TextImage(new Posn(b_width / 2, b_height / 2),
-                            ("You beat the monster! Your score is " + this.score
-                            + "Aim lower next time!"),
+                            ("You beat the monster! It took you " + this.score/30
+                            + " seconds to win. Aim lower next time!"),
                             14,
                             new White())));
         } else {

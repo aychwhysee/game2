@@ -70,14 +70,14 @@ public class AttackWPlayer {
         }
     }
 
-    public AttackWPlayer levelUp() {
-        Random rand = new Random();
-        int min = 1;
-        int max = 3;
-        int randUp = rand.nextInt((max - min) + 1) + min;
-        return new AttackWPlayer(this.posn, this.b_width, this.b_height,
-                this.movementSpeed + randUp, this.attackStat + randUp);
-    }
+//    public AttackWPlayer levelUp() {
+//        Random rand = new Random();
+//        int min = 1;
+//        int max = 3;
+//        int randUp = rand.nextInt((max - min) + 1) + min;
+//        return new AttackWPlayer(this.posn, this.b_width, this.b_height,
+//                this.movementSpeed + randUp, this.attackStat + randUp);
+//    }
 
     //hit checkers, for use in 2nd mode/world
     // Helper: Check left and right
