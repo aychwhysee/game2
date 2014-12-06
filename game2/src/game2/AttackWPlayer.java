@@ -39,15 +39,30 @@ public class AttackWPlayer {
 
     public AttackWPlayer move(String kee) {
         if (kee.equals("left")) {
-            return new AttackWPlayer(new Posn(this.posn.x - movementSpeed, this.posn.y),
-                    this.b_width, this.b_height, this.movementSpeed, this.attackStat);
+            if (this.posn.x - this.width / 2 <= 0) {
+                return this;
+            } else {
+                return new AttackWPlayer(new Posn(this.posn.x - movementSpeed, this.posn.y),
+                        this.b_width, this.b_height, this.movementSpeed, this.attackStat);
+            }
         } else if (kee.equals("right")) {
-            return new AttackWPlayer(new Posn(this.posn.x + movementSpeed, this.posn.y),
-                    this.b_width, this.b_height, this.movementSpeed, this.attackStat);
+            if (this.posn.x + this.width / 2 >= b_width) {
+                return this;
+            } else {
+                return new AttackWPlayer(new Posn(this.posn.x + movementSpeed, this.posn.y),
+                        this.b_width, this.b_height, this.movementSpeed, this.attackStat);
+            }
         } else if (kee.equals("up")) {
-            return new AttackWPlayer(new Posn(this.posn.x, this.posn.y - movementSpeed),
-                    this.b_width, this.b_height, this.movementSpeed, this.attackStat);
+            if (this.posn.y - this.height / 2 <= 0) {
+                return this;
+            } else {
+                return new AttackWPlayer(new Posn(this.posn.x, this.posn.y - movementSpeed),
+                        this.b_width, this.b_height, this.movementSpeed, this.attackStat);
+            }
         } else if (kee.equals("down")) {
+            if (this.posn.y + this.height / 2 >= b_height) {
+                return this;
+            }
             return new AttackWPlayer(new Posn(this.posn.x, this.posn.y + movementSpeed),
                     this.b_width, this.b_height, this.movementSpeed, this.attackStat);
         } else {
@@ -76,11 +91,10 @@ public class AttackWPlayer {
         return (mob.posn.y + mob.height / 2 >= this.posn.y - this.height / 2)
                 && (mob.posn.y - mob.height / 2 <= this.posn.y + this.height / 2);
     }
-    
+
 //    public boolean hitAtAll(AttackWMob mob) {
 //        return (this.hitByMobX(mob) && this.hitByMobY(mob));
 //    }
-
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);
     }
