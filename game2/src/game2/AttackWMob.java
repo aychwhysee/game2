@@ -131,32 +131,37 @@ public class AttackWMob {
         // the mob move left (towards player), and similar algorithms for
         // other way and down/up. Is this a correct way of thinking about it?
         if (player.posn.x < this.posn.x) {
-            return new AttackWMob(
-                    new Posn(this.posn.x - this.speed, this.posn.y),
-                    this.b_width,
-                    this.b_height,
-                    this.health);
+//            return new AttackWMob(
+//                    new Posn(this.posn.x - this.speed, this.posn.y),
+//                    this.b_width,
+//                    this.b_height,
+//                    this.health);
+            return this.move(1);
         } else if (player.posn.x > this.posn.x) {
-            return new AttackWMob(
-                    new Posn(this.posn.x + this.speed, this.posn.y),
-                    this.b_width,
-                    this.b_height,
-                    this.health);
+//            return new AttackWMob(
+//                    new Posn(this.posn.x + this.speed, this.posn.y),
+//                    this.b_width,
+//                    this.b_height,
+//                    this.health);
+            return this.move(2);
         } else if (player.posn.y < this.posn.y) {
-            return new AttackWMob(
-                    new Posn(this.posn.x, this.posn.y - this.speed),
-                    this.b_width,
-                    this.b_height,
-                    this.health);
+//            return new AttackWMob(
+//                    new Posn(this.posn.x, this.posn.y - this.speed),
+//                    this.b_width,
+//                    this.b_height,
+//                    this.health);
+            return this.move(3);
         } else if (player.posn.y > this.posn.y) {
-            return new AttackWMob(
-                    new Posn(this.posn.x, this.posn.y + this.speed),
-                    this.b_width,
-                    this.b_height,
-                    this.health);
+//            return new AttackWMob(
+//                    new Posn(this.posn.x, this.posn.y + this.speed),
+//                    this.b_width,
+//                    this.b_height,
+//                    this.health);
+            return this.move(4);
         } else {
             return this;
         }
+    }
         // To be used in AttackWorld
     public AttackWMob react(AttackWPlayer player) {
         // use the below checkers to make mob react into opposite direction...
