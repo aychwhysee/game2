@@ -61,8 +61,12 @@ public class AttackWorld extends World {
 //            ("Level up!"),
 //            20,
 //            new White());
-            this.player.attackStat = this.player.attackStat + 5;
-            this.player.movementSpeed = this.player.movementSpeed + 5;
+            Random rand = new Random();
+            int min = 1;
+            int max = 3;
+            int randUp = rand.nextInt((max - min) + 1) + min;
+            this.player.attackStat = this.player.attackStat + randUp;
+            this.player.movementSpeed = this.player.movementSpeed + randUp;
             // ^ but this works. hmm. So .levelup() method doesn't work lol.
         }
         timer--;
