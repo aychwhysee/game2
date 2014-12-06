@@ -12,8 +12,8 @@ import javalib.worldimages.*;
 
 public class AttackWorld extends World {
 
-    public static final int b_width = 800;
-    public static final int b_height = 800;
+    public static final int b_width = 1200;
+    public static final int b_height = 1200;
 
     public int score; //will literally just be a tick counter
     public int timer; //will determine when to switch to Dodge mode
@@ -25,7 +25,7 @@ public class AttackWorld extends World {
 
     public AttackWorld() { //init
         super();
-        this.player = new AttackWPlayer(new Posn(b_width / 2, 750), b_width, b_height,
+        this.player = new AttackWPlayer(new Posn(b_width / 2, 1100), b_width, b_height,
                 5, 1);
         this.player.color = new Green();
         this.mob = new AttackWMob(b_width, b_height, 200);
@@ -47,16 +47,19 @@ public class AttackWorld extends World {
     }
 
     public World onTick() {
-        AttackWMob new_mob = this.mob;
-        if (new_mob.health <= 0) {
+//        AttackWMob new_mob = this.mob;
+        if (this.mob.health <= 0) {
             gameOver = true;
         }
         score++;
+        if (score % 480 == 1) {
+            player.levelUp();
+        }
         timer--;
         if (timer <= 0) {
             return this.changeMode();
         } else {
-            return new AttackWorld(player, new_mob.react(player), score, timer,
+            return new AttackWorld(player, mob.react(player), score, timer,
                     gameOver);
         }
     }
@@ -97,15 +100,32 @@ public class AttackWorld extends World {
 
     public WorldImage scoreImage() {
         return new TextImage(
-                new Posn(750, 25),
+                new Posn(600, 25),
                 ("Score: " + this.score),
                 14,
                 new Green());
     }
-    
+
+    public WorldImage mobHPImage() {
+        return new TextImage(
+                new Posn(100, 25),
+                ("Mob HP: " + this.mob.health),
+                14,
+                new Green());
+    }
+
+    public WorldImage timerImage() {
+        return new TextImage(
+                new Posn(1100, 25),
+                ("Timer: " + this.timer),
+                14,
+                new Green());
+    }
+
     public WorldImage makeImage() {
         return new OverlayImages(board(), new OverlayImages(mob.drawImage(),
-                new OverlayImages(player.drawImage(), scoreImage())));
+                new OverlayImages(player.drawImage(), new OverlayImages(scoreImage(),
+                                new OverlayImages(mobHPImage(), timerImage())))));
     }
 
 }

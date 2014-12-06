@@ -12,8 +12,8 @@ import javalib.worldimages.*;
 
 public class DodgeWorld extends World {
 
-    public static final int b_width = 800;
-    public static final int b_height = 800;
+    public static final int b_width = 1200;
+    public static final int b_height = 1200;
 
     public int score;
     public int timer;
@@ -26,7 +26,7 @@ public class DodgeWorld extends World {
 
     public DodgeWorld() {
         super();
-        this.player = new AttackWPlayer(new Posn(b_width / 2, 750), b_width, b_height,
+        this.player = new AttackWPlayer(new Posn(b_width / 2, 1100), b_width, b_height,
                 5, 1);
         this.player.color = new Green();
         this.mob = new AttackWMob(b_width, b_height, 200);
@@ -96,7 +96,7 @@ public class DodgeWorld extends World {
 
     public WorldImage scoreImage() {
         return new TextImage(
-                new Posn(750, 25),
+                new Posn(1100, 25),
                 ("Timer: " + this.timer),
                 14,
                 new White());
