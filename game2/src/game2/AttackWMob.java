@@ -173,6 +173,8 @@ public class AttackWMob {
             this.health = this.health - player.attackStat;
             return this.move(1);
         }
+        // IDEA: instead of just making it react whenever it gets hit, just
+        //       have the mob always running away from the player? lol
     }
 
     public AttackWMob move(int dir) {
