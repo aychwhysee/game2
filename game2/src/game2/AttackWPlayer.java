@@ -17,12 +17,12 @@ public class AttackWPlayer {
     public int b_width;
     public int b_height;
 
-    public int width = 15;
+    public int width = 20;
     public int height = 20;
 
     // Eh, maybe too many player attributes to handle..? not anymore hopefully
-    public int movementSpeed = 5; //initial movementSpeed
-    public int attackStat = 1; //initial att
+    public int movementSpeed; //initial movementSpeed
+    public int attackStat; //initial att
 //    public int money = 0; //initial money---dont need money anymore
 
     public IColor color; // fix later for changing colors in transition b/w modes

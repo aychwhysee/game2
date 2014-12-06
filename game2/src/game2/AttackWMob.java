@@ -130,28 +130,28 @@ public class AttackWMob {
         // Compare player.posn and this.posn. If player.posn.x < this.posn.x make
         // the mob move left (towards player), and similar algorithms for
         // other way and down/up. Is this a correct way of thinking about it?
-        if (player.posn.x < this.posn.x) {
+        if (player.posn.x < this.posn.x - this.width / 2) {
 //            return new AttackWMob(
 //                    new Posn(this.posn.x - this.speed, this.posn.y),
 //                    this.b_width,
 //                    this.b_height,
 //                    this.health);
             return this.move(1);
-        } else if (player.posn.x > this.posn.x) {
+        } else if (player.posn.x > this.posn.x + this.width / 2) {
 //            return new AttackWMob(
 //                    new Posn(this.posn.x + this.speed, this.posn.y),
 //                    this.b_width,
 //                    this.b_height,
 //                    this.health);
             return this.move(2);
-        } else if (player.posn.y < this.posn.y) {
+        } else if (player.posn.y < this.posn.y - this.height / 2) {
 //            return new AttackWMob(
 //                    new Posn(this.posn.x, this.posn.y - this.speed),
 //                    this.b_width,
 //                    this.b_height,
 //                    this.health);
             return this.move(3);
-        } else if (player.posn.y > this.posn.y) {
+        } else if (player.posn.y > this.posn.y + this.height / 2) {
 //            return new AttackWMob(
 //                    new Posn(this.posn.x, this.posn.y + this.speed),
 //                    this.b_width,
@@ -162,7 +162,8 @@ public class AttackWMob {
             return this;
         }
     }
-        // To be used in AttackWorld
+
+    // To be used in AttackWorld
     public AttackWMob react(AttackWPlayer player) {
         // use the below checkers to make mob react into opposite direction...
         // but how do I keep it moving? if hitOnLeft, move right X amt of times
@@ -211,14 +212,14 @@ public class AttackWMob {
                         this.health);
             }
         } else if (dir == 4) {
-            if (this.posn.y + this.height/2 >= b_height) {
+            if (this.posn.y + this.height / 2 >= b_height) {
                 return this.move(3);
             } else {
                 return new AttackWMob(
-                new Posn(this.posn.x, this.posn.y + this.speed),
-                this.b_width,
-                this.b_height,
-                this.health);
+                        new Posn(this.posn.x, this.posn.y + this.speed),
+                        this.b_width,
+                        this.b_height,
+                        this.health);
             }
         } else {
             return this;
@@ -275,7 +276,6 @@ public class AttackWMob {
 //            return false;
 //        }
 //    }
-
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);
     }

@@ -27,7 +27,7 @@ public class DodgeWorld extends World {
     public DodgeWorld() {
         super();
         this.player = new AttackWPlayer(new Posn(b_width / 2, 900), b_width, b_height,
-                5, 1);
+                15, 1);
         this.player.color = new Blue();
         this.mob = new AttackWMob(b_width, b_height, 200);
         this.mob.color = new Yellow();

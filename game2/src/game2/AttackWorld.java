@@ -26,7 +26,7 @@ public class AttackWorld extends World {
     public AttackWorld() { //init
         super();
         this.player = new AttackWPlayer(new Posn(b_width / 2, 900), b_width, b_height,
-                5, 1);
+                15, 1);
         this.player.color = new Green();
         this.mob = new AttackWMob(b_width, b_height, 200);
         this.mob.color = new Red();
