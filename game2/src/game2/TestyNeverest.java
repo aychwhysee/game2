@@ -39,7 +39,7 @@ public class TestyNeverest {
         return new Mob(
                 1000,
                 1000,
-                randomInt(1, 15000));
+                randomInt(0, 15000));
     }
 
     public static AttackWorld randomAW() {
@@ -62,6 +62,7 @@ public class TestyNeverest {
 
     static int testMobReact = 0;
     static int testMobChase = 0;
+    static int testOnTickAW = 00;
 
     //Move tests
     public boolean testPlayerMove(Tester t) {
@@ -156,6 +157,38 @@ public class TestyNeverest {
                         aw);
     }
 
+    // Test stat increase
+    public static void testOnTickAW() throws Exception {
+        Player p = randomPlayer();
+        Player leveledP = new Player(p.posn, p.b_width, p.b_height,
+                p.movementSpeed + randomInt(1, 3), p.attackStat + randomInt(1, 3));
+        Mob m = randomMob();
+        int sc = randomInt(0, 1000);
+        int ti = randomInt(0, 200);
+        World aw = new AttackWorld(p, m, sc, ti, false);
+        World awt = new AttackWorld(p, m.react(p), sc + 1, ti - 1, true);
+        World awpl = new AttackWorld(leveledP, m.react(p), sc + 1, ti - 1, false);
+        World dw = new DodgeWorld(p, m, sc + 1, 300, false);
+        for (int i = 0; i < 50; i++) {
+            if (m.health <= 0) {
+                if (aw.onTick() != awt) {
+                    throw new Exception("Game not ending");
+                }
+            }
+            if (sc % 480 == 0) {
+                if (aw.onTick() != awpl) {
+                    throw new Exception("Player stats not increasing");
+                }
+            }
+            if (ti <= 0) {
+                if (aw.onTick() != dw) {
+                    throw new Exception("Not changing modes");
+                }
+            }
+            testOnTickAW++;
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         TestyNeverest tn = new TestyNeverest();
         Tester.runReport(tn, false, false);
@@ -166,6 +199,9 @@ public class TestyNeverest {
 
         testMobChase();
         System.out.println("Tested mobchase " + testMobChase + " times successfully");
+
+        testOnTickAW();
+        System.out.println("Tested onTickAW " + testOnTickAW + " times successfully");
         /*
          Things to test/check
          - Player movement speed works
