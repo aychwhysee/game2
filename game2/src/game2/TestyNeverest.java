@@ -63,6 +63,7 @@ public class TestyNeverest {
     static int testMobReact = 0;
     static int testMobChase = 0;
 
+    //Move tests
     public boolean testPlayerMove(Tester t) {
         Player p = randomPlayer();
         Player np1 = p.move("left");
@@ -101,6 +102,7 @@ public class TestyNeverest {
                         m5.posn, "test move - false case" + "\n");
     }
 
+    // Mob tests
     // testing react also tests the hit checkers, so no need to test hit checkers
     // since if react works as it should, then the hit checkers also work.
     public static void testMobReact() throws Exception {
@@ -119,7 +121,7 @@ public class TestyNeverest {
             testMobReact++;
         }
     }
-    
+
     public static void testMobChase() throws Exception {
         Player p = randomPlayer();
         Mob m = randomMob();
@@ -132,6 +134,28 @@ public class TestyNeverest {
         }
     }
 
+    // World tests
+    // AttackWorld property tests
+    public boolean testOnKeyEventAW(Tester t) {
+        Player p = randomPlayer();
+        Mob m = randomMob();
+        AttackWorld aw = new AttackWorld(p, m, 0, 0, false);
+        AttackWorld aw1 = new AttackWorld(p.move("left"), m, 0, 0, false);
+        AttackWorld aw2 = new AttackWorld(p.move("right"), m, 0, 0, false);
+        AttackWorld aw3 = new AttackWorld(p.move("up"), m, 0, 0, false);
+        AttackWorld aw4 = new AttackWorld(p.move("down"), m, 0, 0, false);
+        return t.checkExpect(aw.onKeyEvent("left"),
+                aw1, "test onKeyEventAW - left")
+                && t.checkExpect(aw.onKeyEvent("right"),
+                        aw2, "test onKeyEventAW - left")
+                && t.checkExpect(aw.onKeyEvent("up"),
+                        aw3, "test onKeyEventAW")
+                && t.checkExpect(aw.onKeyEvent("down"),
+                        aw4, "test onkeyEventAW - down")
+                && t.checkExpect(aw.onKeyEvent("z"),
+                        aw);
+    }
+
     public static void main(String[] args) throws Exception {
         TestyNeverest tn = new TestyNeverest();
         Tester.runReport(tn, false, false);
@@ -139,7 +163,7 @@ public class TestyNeverest {
         //and a mix of my own property tests
         testMobReact();
         System.out.println("Tested mobreact " + testMobReact + " times successfully");
-        
+
         testMobChase();
         System.out.println("Tested mobchase " + testMobChase + " times successfully");
         /*
