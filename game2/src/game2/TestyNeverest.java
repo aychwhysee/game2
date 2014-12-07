@@ -189,6 +189,27 @@ public class TestyNeverest {
         }
     }
 
+    // DodgeWorld tests
+    public boolean testOnKeyEventDW(Tester t) {
+        Player p = randomPlayer();
+        Mob m = randomMob();
+        DodgeWorld dw = new DodgeWorld(p, m, 0, 0, false);
+        DodgeWorld dw1 = new DodgeWorld(p.move("left"), m, 0, 0, false);
+        DodgeWorld dw2 = new DodgeWorld(p.move("right"), m, 0, 0, false);
+        DodgeWorld dw3 = new DodgeWorld(p.move("up"), m, 0, 0, false);
+        DodgeWorld dw4 = new DodgeWorld(p.move("down"), m, 0, 0, false);
+        return t.checkExpect(dw.onKeyEvent("left"),
+                dw1, "test onKeyEventAW - left")
+                && t.checkExpect(dw.onKeyEvent("right"),
+                        dw2, "test onKeyEventAW - left")
+                && t.checkExpect(dw.onKeyEvent("up"),
+                        dw3, "test onKeyEventAW")
+                && t.checkExpect(dw.onKeyEvent("down"),
+                        dw4, "test onkeyEventAW - down")
+                && t.checkExpect(dw.onKeyEvent("z"),
+                        dw);
+    }
+
     public static void main(String[] args) throws Exception {
         TestyNeverest tn = new TestyNeverest();
         Tester.runReport(tn, false, false);
@@ -204,16 +225,21 @@ public class TestyNeverest {
         System.out.println("Tested onTickAW " + testOnTickAW + " times successfully");
         /*
          Things to test/check
-         - Player movement speed works
-         - Mob runs away from player
-         - Mob HP drops by player ATT stat
-         - 
+         - Player movement speed works X
+         - Mob runs away from player X
+         - Mob HP drops by player ATT stat X
+         - Player stats work X (also tested in above test)
         
-         - Mode changes (to diff world) every x seconds/ticks
+         //// Game reqs
+         - Different modes w/ transitions......TESTED.
+         - Independent Mob.....................TESTED.
+         - Player attributes...................TESTED. wooooooooo
+        
+         - Mode changes (to diff world) every x seconds/ticks X
          - and vice versa
         
          - Player dies/game ends if they get hit in 2nd mode
-         - mob chases player
+         - mob chases playerX
         
 
         
