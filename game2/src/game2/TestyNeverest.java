@@ -62,7 +62,8 @@ public class TestyNeverest {
 
     static int testMobReact = 0;
     static int testMobChase = 0;
-    static int testOnTickAW = 00;
+    static int testOnTickAW = 0;
+    static int testOnTickDW = 0;
 
     //Move tests
     public boolean testPlayerMove(Tester t) {
@@ -210,6 +211,29 @@ public class TestyNeverest {
                         dw);
     }
 
+    public static void testOnTickDW() throws Exception {
+        Player p = randomPlayer();
+        Mob m = randomMob();
+        int sc = randomInt(0, 1000);
+        int ti = randomInt(0, 200);
+        World dw = new DodgeWorld(p, m, sc, ti, false);
+        World dwt = new DodgeWorld(p, m.chase(p), sc, ti - 1, true);
+        World aw = new AttackWorld(p, m, sc, 1000, false);
+        for (int i = 0; i < 50; i++) {
+            if (p.hitByMobX(m) && p.hitByMobY(m)) {
+                if (dw.onTick() != dwt) {
+                    throw new Exception("Game not ending");
+                }
+            }
+            if (ti <= 0) {
+                if (dw.onTick() != aw) {
+                    throw new Exception("Not changing modes");
+                }
+            }
+            testOnTickDW++;
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         TestyNeverest tn = new TestyNeverest();
         Tester.runReport(tn, false, false);
@@ -223,6 +247,9 @@ public class TestyNeverest {
 
         testOnTickAW();
         System.out.println("Tested onTickAW " + testOnTickAW + " times successfully");
+
+        testOnTickDW();
+        System.out.println("tested onTickDW " + testOnTickDW + " times successfully");
         /*
          Things to test/check
          - Player movement speed works X

@@ -31,7 +31,7 @@ public class DodgeWorld extends World {
         this.player.color = new Blue();
         this.mob = new Mob(b_width, b_height, 200);
         this.mob.color = new Yellow();
-        this.timer = 300; // fix later
+        this.timer = 300;
         this.gameOver = false;
         this.score = 0;
     }
@@ -39,9 +39,9 @@ public class DodgeWorld extends World {
     public DodgeWorld(Player player, Mob mob, int score, int timer,
             boolean gameOver) {
         this.player = player;
-        player.color = new Blue(); //? need to make sure this is correct
+        player.color = new Blue();
         this.mob = mob;
-        mob.color = new Yellow(); //? same here
+        mob.color = new Yellow();
         this.timer = timer;
         this.gameOver = gameOver;
         this.score = score;
@@ -53,9 +53,8 @@ public class DodgeWorld extends World {
             gameOver = true;
         }
         timer--;
-        // mob.chase(new_player); // need to write this later
-        if (timer <= 0) { // change world here?
-            return this.changeMode();// maybe not here. hmmmmmmmmmmmmmmmmmmm
+        if (timer <= 0) {
+            return this.changeMode();
         } else {
             return new DodgeWorld(new_player, mob.chase(new_player), score, timer, gameOver);
         }
