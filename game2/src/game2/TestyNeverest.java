@@ -61,6 +61,7 @@ public class TestyNeverest {
     }
 
     static int testMobReact = 0;
+    static int testMobChase = 0;
 
     public boolean testPlayerMove(Tester t) {
         Player p = randomPlayer();
@@ -118,6 +119,18 @@ public class TestyNeverest {
             testMobReact++;
         }
     }
+    
+    public static void testMobChase() throws Exception {
+        Player p = randomPlayer();
+        Mob m = randomMob();
+        Mob cm = m.chase(p);
+        for (int i = 0; i < 50; i++) {
+            if (cm.posn == m.posn) {
+                throw new Exception("Not chasing/moving");
+            }
+            testMobChase++;
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         TestyNeverest tn = new TestyNeverest();
@@ -126,6 +139,9 @@ public class TestyNeverest {
         //and a mix of my own property tests
         testMobReact();
         System.out.println("Tested mobreact " + testMobReact + " times successfully");
+        
+        testMobChase();
+        System.out.println("Tested mobchase " + testMobChase + " times successfully");
         /*
          Things to test/check
          - Player movement speed works
