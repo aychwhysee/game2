@@ -258,8 +258,8 @@ public class TestyNeverest {
          - Player stats work X (also tested in above test)
         
          //// Game reqs
-         - Different modes w/ transitions......TESTED.
-         - Independent Mob.....................TESTED.
+         - Different modes w/ transitions......TESTED. Both ways! woooo
+         - Independent Mob.....................TESTED. wooooooooo
          - Player attributes...................TESTED. wooooooooo
         
          - Mode changes (to diff world) every x seconds/ticks X
