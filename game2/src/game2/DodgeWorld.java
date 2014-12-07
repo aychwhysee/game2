@@ -19,24 +19,24 @@ public class DodgeWorld extends World {
     public int timer;
     // once timer gets to 0, game will switch to attackworld mode
 
-    public AttackWPlayer player; //need to initialize to be the same one from first mode..? how?
-    public AttackWMob mob; //same here, though HP of mob probs doesnt matter.
+    public Player player; //need to initialize to be the same one from first mode..? how?
+    public Mob mob; //same here, though HP of mob probs doesnt matter.
 
     public boolean gameOver; // will be 'true' once player gets hit by mob.
 
     public DodgeWorld() {
         super();
-        this.player = new AttackWPlayer(new Posn(b_width / 2, 900), b_width, b_height,
+        this.player = new Player(new Posn(b_width / 2, 900), b_width, b_height,
                 15, 1);
         this.player.color = new Blue();
-        this.mob = new AttackWMob(b_width, b_height, 200);
+        this.mob = new Mob(b_width, b_height, 200);
         this.mob.color = new Yellow();
         this.timer = 300; // fix later
         this.gameOver = false;
         this.score = 0;
     }
 
-    public DodgeWorld(AttackWPlayer player, AttackWMob mob, int score, int timer,
+    public DodgeWorld(Player player, Mob mob, int score, int timer,
             boolean gameOver) {
         this.player = player;
         player.color = new Blue(); //? need to make sure this is correct
@@ -48,7 +48,7 @@ public class DodgeWorld extends World {
     }
 
     public World onTick() {
-        AttackWPlayer new_player = this.player;
+        Player new_player = this.player;
         if (new_player.hitByMobX(mob) && new_player.hitByMobY(mob)) {
             gameOver = true;
         }

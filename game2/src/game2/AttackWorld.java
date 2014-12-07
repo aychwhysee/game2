@@ -18,24 +18,24 @@ public class AttackWorld extends World {
     public int score; //will literally just be a tick counter
     public int timer; //will determine when to switch to Dodge mode
 
-    public AttackWPlayer player;
-    public AttackWMob mob;
+    public Player player;
+    public Mob mob;
 
     public boolean gameOver; // will be 'true' once mob hp is <= 0
 
     public AttackWorld() { //init
         super();
-        this.player = new AttackWPlayer(new Posn(b_width / 2, 900), b_width, b_height,
+        this.player = new Player(new Posn(b_width / 2, 900), b_width, b_height,
                 10, 1);
         this.player.color = new Green();
-        this.mob = new AttackWMob(b_width, b_height, 15000);
+        this.mob = new Mob(b_width, b_height, 15000);
         this.mob.color = new Red();
         this.score = 0;
         this.timer = 1000;
         this.gameOver = false;
     }
 
-    public AttackWorld(AttackWPlayer player, AttackWMob mob, int score, int timer,
+    public AttackWorld(Player player, Mob mob, int score, int timer,
             boolean gameOver) {
         this.player = player;
         player.color = new Green();
@@ -47,7 +47,7 @@ public class AttackWorld extends World {
     }
 
     public World onTick() {
-//        AttackWMob new_mob = this.mob;
+//        Mob new_mob = this.mob;
         if (this.mob.health <= 0) {
             gameOver = true;
         }
