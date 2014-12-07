@@ -60,8 +60,25 @@ public class TestyNeverest {
                 false);
     }
 
+    public boolean testPlayerMove(Tester t) {
+        Player p = randomPlayer();
+        Player np1 = p.move("left");
+        Player np2 = p.move("right");
+        Player np3 = p.move("up");
+        Player np4 = p.move("down");
+        return t.checkExpect(p.posn.x - p.movementSpeed,
+                np1.posn.x, "test move - left" + "\n")
+                && t.checkExpect(p.posn.x + p.movementSpeed,
+                        np2.posn.x, "test move - right" + "\n")
+                && t.checkExpect(p.posn.y - p.movementSpeed,
+                        np3.posn.y, "test move - up" + "\n")
+                && t.checkExpect(p.posn.y + p.movementSpeed,
+                        np4.posn.y, "test move - down" + "\n");
+    }
+
     public static void main(String[] args) {
-        System.out.println("hello world!");
+        TestyNeverest tn = new TestyNeverest();
+        Tester.runReport(tn, false, false);
         /*
          Things to test/check
          - Player movement speed works
