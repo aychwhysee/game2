@@ -211,14 +211,6 @@ public class Mob {
                 || this.hitOnTop(player) || this.hitOnBot(player));
     } // I have no idea what I'm doing
 
-//    public boolean isDeadHuh() {
-//         //check Mob health. if < 0, return true; else false.
-//        if (this.health <= 0) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
     public WorldImage drawImage() {
         return new RectangleImage(this.posn, this.width, this.height, this.color);
     }
