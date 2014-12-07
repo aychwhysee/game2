@@ -24,7 +24,7 @@ public class TestyNeverest {
         return rand.nextInt((max - min) + 1) + min;
     }
 
-    public Player randomPlayer() {
+    public static Player randomPlayer() {
         return new Player(
                 new Posn(randomInt(20, 980), randomInt(20, 980)),
                 1000,
@@ -33,7 +33,7 @@ public class TestyNeverest {
                 randomInt(1, 50));
     }
 
-    public Mob randomMob() {
+    public static Mob randomMob() {
         // Just need to use first constructor since first constructor already
         // sets mob in random posn.
         return new Mob(
@@ -42,7 +42,7 @@ public class TestyNeverest {
                 randomInt(1, 15000));
     }
 
-    public AttackWorld randomAW() {
+    public static AttackWorld randomAW() {
         return new AttackWorld(
                 randomPlayer(),
                 randomMob(),
@@ -51,7 +51,7 @@ public class TestyNeverest {
                 false);
     }
 
-    public DodgeWorld randomDW() {
+    public static DodgeWorld randomDW() {
         return new DodgeWorld(
                 randomPlayer(),
                 randomMob(),
@@ -59,6 +59,8 @@ public class TestyNeverest {
                 randomInt(1, 299),
                 false);
     }
+
+    static int testMobReact = 0;
 
     public boolean testPlayerMove(Tester t) {
         Player p = randomPlayer();
@@ -98,9 +100,32 @@ public class TestyNeverest {
                         m5.posn, "test move - false case" + "\n");
     }
 
-    public static void main(String[] args) {
+    // testing react also tests the hit checkers, so no need to test hit checkers
+    // since if react works as it should, then the hit checkers also work.
+    public static void testMobReact() throws Exception {
+        Player p = randomPlayer();
+        Mob m = randomMob();
+        Mob rm = m.react(p);
+        for (int i = 0; i < 50; i++) {
+            if (rm.posn == m.posn) {
+                throw new Exception("React is not working");
+            }
+            if (m.hitAtAll(p)) {
+                if (rm.health == m.health) {
+                    throw new Exception("React is not taking away health");
+                }
+            }
+            testMobReact++;
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
         TestyNeverest tn = new TestyNeverest();
         Tester.runReport(tn, false, false);
+        //Doing a mix of Game Worlds' provided Tester functions (checkExpect)
+        //and a mix of my own property tests
+        testMobReact();
+        System.out.println("Tested mobreact " + testMobReact + " times successfully");
         /*
          Things to test/check
          - Player movement speed works
