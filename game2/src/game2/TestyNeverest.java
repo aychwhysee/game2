@@ -116,7 +116,7 @@ public class TestyNeverest {
                 throw new Exception("React is not working");
             }
             if (m.hitAtAll(p)) {
-                if (rm.health == m.health) {
+                if (rm.health != m.health - p.attackStat) {
                     throw new Exception("React is not taking away health");
                 }
             }
